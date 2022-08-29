@@ -11,6 +11,13 @@ class Ucesnik extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ime_prezime',
+        'umetnicko_ime',
+        'drzava',
+        'godine'
+    ];
+
     public function takmicenja()
     {
         return $this->hasMany(Takmicenje::class);

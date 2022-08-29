@@ -10,6 +10,11 @@ class Pobednik extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'takmicenje_id',
+        'ucesnik_id',
+    ];
+
     public function takmicenje()
     {
         return $this->belongsTo(Takmicenje::class);

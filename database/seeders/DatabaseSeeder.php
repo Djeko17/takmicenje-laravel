@@ -13,6 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $takmicenjeSeeder = new TakmicenjeSeeder();
+        $ucesnikSeeder = new UcesnikSeeder();
+        $pobednikSeeder = new PobednikSeeder();
+
+        $takmicenjeSeeder->run();
+        $ucesnikSeeder->run();
+        $pobednikSeeder->run();
     }
 }

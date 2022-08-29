@@ -10,6 +10,13 @@ class Takmicenje extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'drzava',
+        'naziv',
+        'godina',
+        'instagram'
+    ];
+
     public function ucesnici()
     {
         return $this->hasMany(Ucesnik::class);
