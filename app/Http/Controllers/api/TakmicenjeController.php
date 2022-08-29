@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TResurs;
 use App\Models\Takmicenje;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TakmicenjeController extends Controller
 {
@@ -15,7 +17,7 @@ class TakmicenjeController extends Controller
      */
     public function index()
     {
-        //
+        return TResurs::collection(Takmicenje::all());
     }
 
     /**
@@ -36,7 +38,25 @@ class TakmicenjeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'drzava' => 'required',
+            'naziv' => 'required',
+            'godina' => 'required',
+            'instagram' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Poruka: ' => $validator->errors()]);
+        }
+
+        Takmicenje::create([
+            'drzava' => $request->drzava,
+            'naziv' => $request->naziv,
+            'godina' => $request->godina,
+            'instagram' => $request->instagram,
+        ]);
+
+        return response()->json(['Poruka: ' => 'Takmicenje je kreirano!']);
     }
 
     /**
@@ -81,6 +101,7 @@ class TakmicenjeController extends Controller
      */
     public function destroy(Takmicenje $takmicenje)
     {
-        //
+        $takmicenje->delete();
+        return response()->json(['Poruka: ' => 'Takmicenje je obrisano!']);
     }
 }

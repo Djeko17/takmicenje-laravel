@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('takmicenje', [TakmicenjeController::class, 'store']);
-Route::destroy('takmicenje/{takmicenje}', [TakmicenjeController::class, 'destroy']);
+Route::delete('takmicenje/{takmicenje}', [TakmicenjeController::class, 'destroy']);
 Route::get('takmicenje', [TakmicenjeController::class, 'index']);
 
 Route::get('ucesnik', [UcesnikController::class, 'index']);
