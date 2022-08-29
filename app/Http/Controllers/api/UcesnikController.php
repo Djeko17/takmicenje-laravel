@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UResurs;
 use App\Models\Ucesnik;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class UcesnikController extends Controller
      */
     public function index()
     {
-        //
+        return UResurs::collection(Ucesnik::all());
     }
 
     /**
@@ -47,7 +48,7 @@ class UcesnikController extends Controller
      */
     public function show(Ucesnik $ucesnik)
     {
-        //
+        return new UResurs($ucesnik);
     }
 
     /**
@@ -81,6 +82,7 @@ class UcesnikController extends Controller
      */
     public function destroy(Ucesnik $ucesnik)
     {
-        //
+        $ucesnik->delete();
+        return response()->json(['Poruka: ' => 'Ucesnik je obrisan!']);
     }
 }
